@@ -1,7 +1,8 @@
 // import Jimp from 'jimp';
 import { httpServer } from './src/http_server/index';
-// import robot from 'robotjs';
+import robot from 'robotjs';
 import { WebSocketServer } from 'ws';
+import { getMousePosition } from './src/commands/mousePosition';
 
 const HTTP_PORT = 3000;
 
@@ -13,14 +14,18 @@ const wss = new WebSocketServer({
 });
 
 wss.on('connection', (ws) => {
+    ws.on('message', (data) => {
+        let [command, x, y] = (`${data}`).split(' ');
 
-    ws.on('message', () => {
-        ws.send('position');
+        switch (command) {
+            case 'mouse_position':
+                getMousePosition(ws);
+                break;
+        }
+
     });
 });
 
 wss.on('close', () => {
     console.log('end');
 });
-
-
