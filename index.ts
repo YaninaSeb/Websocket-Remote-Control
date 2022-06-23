@@ -1,8 +1,9 @@
-// import Jimp from 'jimp';
+import Jimp from 'jimp';
 import { httpServer } from './src/http_server/index';
 import robot from 'robotjs';
 import { WebSocketServer } from 'ws';
-import { getMousePosition } from './src/commands/mousePosition';
+import { getMousePosition, setMouseUp, setMouseDown, setMouseLeft, setMouseRight } from './src/commands/navigation';
+import { drawCircle } from './src/commands/drawCircle';
 
 const HTTP_PORT = 3000;
 
@@ -15,11 +16,27 @@ const wss = new WebSocketServer({
 
 wss.on('connection', (ws) => {
     ws.on('message', (data) => {
-        let [command, x, y] = (`${data}`).split(' ');
+        let [command, px1, px2] = (`${data}`).split(' ');
 
         switch (command) {
             case 'mouse_position':
-                getMousePosition(ws);
+                const {x, y} =  getMousePosition();
+                ws.send(`mouse_position_${x},${y}`);
+                break;
+            case 'mouse_up':
+                setMouseUp(ws, px1);
+                break;
+            case 'mouse_down':
+                setMouseDown(ws, px1);
+                break;
+            case 'mouse_left':
+                setMouseLeft(ws, px1);
+                break;
+            case 'mouse_right':
+                setMouseRight(ws, px1);
+                break;
+            case 'draw_circle':
+                drawCircle(ws, px1);
                 break;
         }
 
