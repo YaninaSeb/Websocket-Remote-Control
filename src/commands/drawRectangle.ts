@@ -7,17 +7,17 @@ export const drawRectangle = (h: string, w:string): void => {
     const width = Number(w);
     const height = Number(h);
 
-    let posX1 = x0 - width;
-    let posY1 = y0;
+    const posX1 = x0 - width;
+    const posY1 = y0;
 
-    let posX2 = posX1;
-    let posY2 = posY1 - height;
+    const posX2 = posX1;
+    const posY2 = posY1 - height;
 
-    let posX3 = posX2 + width;
-    let posY3 = posY2;
+    const posX3 = posX2 + width;
+    const posY3 = posY2;
 
-    let posX4 = posX3;
-    let posY4 = posY3 + height;
+    const posX4 = posX3;
+    const posY4 = posY3 + height;
 
     robot.mouseToggle('down');
     robot.mouseToggle('down');
@@ -27,4 +27,4 @@ export const drawRectangle = (h: string, w:string): void => {
     robot.moveMouseSmooth(posX3, posY3);
     robot.moveMouseSmooth(posX4, posY4);
     robot.mouseToggle('up');
-}
+};

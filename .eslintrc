@@ -28,7 +28,8 @@
       }], 
       "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
       "@typescript-eslint/brace-style": "off",
-      "@typescript-eslint/naming-convention": "off"
+      "@typescript-eslint/naming-convention": "off",
+      "no-case-declarations": "off"
     },
     "ignorePatterns": ["*config.js"]
 }
