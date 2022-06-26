@@ -6,7 +6,7 @@ export const getScreen = async () => {
     try {
         const { x, y } = robot.getMousePos();
         const size = 100;
-        
+
         const image = <Bitmap>robot.screen.capture(x - size, y - size, size * 2, size * 2);
         const jimp = new Jimp({
             'data': image.image,
