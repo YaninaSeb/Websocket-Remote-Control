@@ -77,11 +77,10 @@ wss.on('connection', (ws) => {
     });
 
     ws.on('close', () => {
-        console.log('\nThe websocket has closed\n');
+        process.stdout.write('\nClosing websocket...\n');
     });
 
     process.on('SIGINT', () => {
-        process.stdout.write('\nClosing websocket...\n');
         ws.close();
         wss.close();
         process.exit();

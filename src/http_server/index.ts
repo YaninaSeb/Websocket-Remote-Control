@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as http from 'http';
 
-export const httpServer: http.Server = http.createServer(function (req, res) {
+export const httpServer: http.Server = http.createServer( (req, res) => {
     const __dirname: string = path.resolve(path.dirname(''));
     const file_path: string = __dirname + (req.url === '/' ? '/front/index.html' : '/front' + req.url);
 
